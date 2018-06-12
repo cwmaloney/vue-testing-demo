@@ -1,0 +1,17 @@
+{
+  "env": {
+    "development": {
+      "presets": [
+        // don't transform modules to commonjs; leave modules to bundler
+        [ "env", { "modules": false } ]
+      ]
+    },
+    "test": {
+      "presets": [
+        // don't transform modules to commonjs; leave modules to bundler
+        ["env", { "modules": false, "targets": { "node": "current" } } ]
+      ],
+      "plugins": [ "transform-object-rest-spread", "istanbul" ]
+    }
+  }
+}
