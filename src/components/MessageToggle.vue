@@ -1,8 +1,8 @@
 <template>
   <div class="message-toggle">
     <message :message="message"></message>
-    <button @click="changeMessage">
-      Change message
+    <button id="change-button" @click="changeMessage">
+      Change Message
     </button>
   </div>
 </template>
@@ -13,13 +13,20 @@ import Message from './Message.vue'
 export default {
   name: 'message-toggle',
 
-  data: () => ({
-    message: null
-  }),
+  props: {
+    'message1': { type:String, required: true },
+    'message2': { type:String, required: true }
+  },
+
+  data() {
+    return {
+      message: this.message1
+    }
+  },
 
   methods: {
     changeMessage () {
-      this.message = (this.message === 'message1' ? 'message2' : 'message1');
+      this.message = (this.message === this.message1 ? this.message2 : this.message1);
     }
   },
 

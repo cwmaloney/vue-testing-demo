@@ -1,19 +1,19 @@
 <template>
-<div class="message-list">
-  <h1>Messages:</h1>
-  <ul>
-    <li v-for="item in items" :key="item.id">
-      {{ item.id }}: {{ item.message }}
-    </li>
-  </ul>
-</div>
+  <div class="message-list">
+    <h1>Messages</h1>
+    <ul>
+      <li v-for="message in messages" :key="message.id">
+        {{ message.id }}: {{ message.message }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'list',
+  name: 'message-list',
   props: [
-    'items'
+    'messages'
   ]
 }
 </script>
