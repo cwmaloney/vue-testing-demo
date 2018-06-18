@@ -1,17 +1,21 @@
 {
+  "presets": [
+    [ "env", {  "modules": false } ]
+  ],
+
+  "plugins": [ "transform-object-rest-spread" ],
+
   "env": {
-    "development": {
+    // when running testing via Karma with Mocha...
+    "test-mocha": {
       "presets": [
-        // don't transform modules to commonjs; leave modules to bundler
-        [ "env", { "modules": false } ]
-      ]
-    },
-    "test": {
-      "presets": [
-        // don't transform modules to commonjs; leave modules to bundler
-        ["env", { "modules": false, "targets": { "node": "current" } } ]
+        ["env", {
+          "modules": false,
+          "targets": { "node": "current" }
+        }]
       ],
-      "plugins": [ "transform-object-rest-spread", "istanbul" ]
+      // add istanbul for test coverage
+      "plugins": [ "istanbul" ]
     }
   }
 }
