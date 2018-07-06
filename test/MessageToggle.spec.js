@@ -3,6 +3,7 @@ import MessageToggle from '../src/components/MessageToggle.vue'
 import Message from '../src/components/Message.vue'
 
 describe('MessageToggle.vue', () => {
+
   it('toggles message when button is clicked', () => {
     const propsData = {
       message1: "one",
@@ -16,4 +17,5 @@ describe('MessageToggle.vue', () => {
     button.trigger('click');
     expect(MessageComponent.props()).toEqual({message: 'one'});
   });
+
 });
