@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: "babel-eslint",
-    ecmaVersion: 7,
+    ecmaVersion: 2018,
     sourceType: 'module'
   },
 
@@ -15,8 +15,12 @@ module.exports = {
   },
 
   extends: [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:vue/recommended"
   ],
+
+  // html plugin required to lint *.vue files
+  plugins: [ "vue", "html"],
 
   // custom rules
   rules: {
@@ -29,7 +33,7 @@ module.exports = {
     "generator-star-spacing": "off",
 
     // allow debugger during development
-    "no-debugger": "error",
+    "no-debugger": process.env.NODE_ENV === 'production' ? "error" : "off",
 
     // allow semicolons
     "semi": "off",
@@ -42,5 +46,24 @@ module.exports = {
     "padded-blocks": "off",
 
     "no-unused-vars": [ "error", { "vars": "local", "args": "none" } ]
-  }
+  },
+
+  overrides: [
+    {
+      files: [
+        "**/*.test.js", "**/*.spec.js"
+      ],
+      env: {
+        jest: true
+      },
+      plugins: ["jest"],
+      rules: {
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
+      }
+    }
+]
 };
