@@ -16,6 +16,11 @@
       ],
       // add istanbul for test coverage
       "plugins": [ "istanbul" ]
+    },
+    "test": {
+      "presets": [
+        ["env", { "targets": { "node": "current" } } ]
+      ]
     }
   }
 }
