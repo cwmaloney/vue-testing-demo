@@ -268,10 +268,10 @@ const productionConfig = {
 
 function getWebpackConfig(env) {
   console.log(`getWebpackConfig(${env})`);
-  if (env == "test-mocha") {
+  if (env === "test-mocha" || env === "test-karma-mocha") {
     let temp = merge(commonConfig, developmentConfig);
     temp.externals = [WebpackNodeExternals];
-    temp.devtool = 'eval';
+    temp.devtool = '#inline-cheap-module-source-map';
     return temp;
   } else if (env === "development") {
     return merge(commonConfig, developmentConfig);
@@ -280,9 +280,3 @@ function getWebpackConfig(env) {
 }
 
 module.exports = getWebpackConfig;
-
-// test specific setups
-// if (process.env.NODE_ENV === 'test') {
-//   module.exports.externals = [require('webpack-node-externals')()]
-//   module.exports.devtool = 'eval'
-// }

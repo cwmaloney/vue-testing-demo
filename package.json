@@ -6,22 +6,27 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --env development",
-    "build": "webpack",
+    "build": "webpack --progress --hide-modules",
+    "test-jest": "jest --coverage",
     "test-mocha": "cross-env BABEL_ENV=test-mocha mocha-webpack --webpack-env test-mocha --webpack-config webpack.config.js --require test/mocha-setup.js test/**/*.spec.js",
+    "test-mocha-post-build": "cross-env BABEL_ENV=test-mocha mocha --require babel-register --require babel-polyfill --require test/mocha-setup.js --recursive dist/**/*.js",
     "test-karma-mocha": "cross-env BABEL_ENV=test-karma-mocha karma start --single-run"
   },
   "dependencies": {
     "vue": "^2.5.16"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.19",
-    "autoprefixer": "^8.6.2",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "autoprefixer": "^8.6.3",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^8.2.5",
+    "babel-jest": "^23.2.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-istanbul": "^4.1.6",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "chalk": "^2.4.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
@@ -31,20 +36,21 @@
     "eslint-config-standard": "^11.0.0",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^2.0.0",
-    "eslint-plugin-html": "^4.0.3",
-    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-html": "^4.0.5",
+    "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-vue": "^4.5.0",
-    "expect": "^23.1.0",
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "jasmine": "^3.1.0",
+    "jest": "^23.2.0",
+    "jest-serializer-vue": "^2.0.2",
     "jsdom": "^11.11.0",
     "jsdom-global": "^3.0.2",
-    "karma": "^2.0.3",
+    "karma": "^2.0.4",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.2",
     "karma-mocha": "^1.3.0",
@@ -57,19 +63,20 @@
     "node-sass": "^4.9.0",
     "nyc": "^12.0.2",
     "optimize-css-assets-webpack-plugin": "^4.0.2",
-    "parcel-bundler": "^1.9.0",
+    "parcel-bundler": "^1.9.3",
     "postcss-loader": "^2.1.5",
     "raw-loader": "^0.5.1",
     "sass-loader": "^7.0.3",
     "shelljs": "^0.8.2",
+    "snap-shot-it": "^5.0.1",
     "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.2.5",
+    "uglifyjs-webpack-plugin": "^1.2.6",
     "url-loader": "^1.0.1",
     "vue-hot-reload-api": "^2.3.0",
     "vue-jest": "^2.6.0",
     "vue-loader": "^15.2.4",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.12.0",
+    "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.3",
@@ -84,6 +91,19 @@
     "last 2 versions",
     "not ie <= 10"
   ],
+  "jest": {
+    "moduleFileExtensions": [ "js",  "vue" ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
+  },
   "nyc": {
     "include": [
       "src/**/*.(js|vue)"
