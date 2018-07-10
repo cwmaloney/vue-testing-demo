@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageList.vue rendors items 1`] = `
+<div class="message-list">
+  <h1>Messages</h1>
+  <ul></ul>
+</div>
+`;

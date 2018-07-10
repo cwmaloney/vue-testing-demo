@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter.vue rendors counter 1`] = `
+<div class="counter">
+  0
+  <button id="increment-button">Increment</button>
+  <button id="decrement-button">Decrement</button>
+</div>
+`;
